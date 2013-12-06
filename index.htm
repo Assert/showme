@@ -40,7 +40,7 @@
                 });
                 */
                 var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-                angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
+                angularFireAuth.initialize(ref, { scope: $scope, name: "user", messages: "messages" });
                 
                 $scope.messages = [];
 
@@ -62,14 +62,14 @@
                     $scope.time = "";
                     $scope.code = "";
                 };
-                /*
+                
                 $scope.login = function () {
                     angularFireAuth.login("facebook");
                 };
                 $scope.logout = function () {
                     angularFireAuth.logout();
                 };
-                */
+                
             }
           
 
