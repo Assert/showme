@@ -11,21 +11,19 @@
     <body ng-controller="MyController">
         <h1>ShowMe</h1>
         
-        
         <span ng-show="user">
-  {{user.name}} | <a ng-click="logout()">Logout</a>
-</span>
-<span ng-hide="user"><a ng-click="login()">Login</a></span>
+            {{user.name}} | <a ng-click="logout()">Logout</a>
+        </span>
+        <span ng-hide="user">
+                <a ng-click="login()">Login</a>
+        </span>
 
 
         <div id="messagesDiv">
-            <div ng-repeat="msg in messages"><em>{{msg.time}}-{{msg.name}}</em>: {{msg.desc}}</div>
+            <div ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}</div>
         </div>
         
-        <input type="text" ng-model="time" placeholder="">
-        <input type="text" ng-model="code" placeholder="">
-        <input type="text" ng-model="codeType" placeholder="">
-        <input type="text" ng-model="image" placeholder="">
+        
         <input type="text" ng-model="desc" ng-keydown="addMessage($event)" placeholder="Message...">
         <script>
           
@@ -42,17 +40,11 @@
                     if (e.keyCode != 13) return;
 
                     $scope.messages.push({
-                        name: $scope.name.name,
-                        time: $scope.time,
-                        code: $scope.code,
-                        codeType: $scope.codeType,
-                        image: $scope.image,
+                        name: "EB",
                         desc: $scope.desc
                     });
 
                     $scope.desc = "";
-                    $scope.time = "";
-                    $scope.code = "";
                 };
                 
                 $scope.login = function () {
