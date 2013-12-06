@@ -22,7 +22,6 @@
             <div ng-repeat="msg in messages"><em>{{msg.time}}-{{msg.name}}</em>: {{msg.desc}}</div>
         </div>
         
-        <input type="text" ng-model="name" value="{{user.name}}" readonly="readonly" >
         <input type="text" ng-model="time" placeholder="">
         <input type="text" ng-model="code" placeholder="">
         <input type="text" ng-model="codeType" placeholder="">
@@ -33,24 +32,17 @@
             var app = angular.module("myapp", ["firebase"]);
 
             function MyController($scope, angularFireAuth) {
-                /*
-                angularFireAuth.initialize(new Firebase("https://eysteinbye.firebaseio.com/showme"), {
-                    scope: $rootScope,
-                    name: 'user'
-                });
-                */
+
                 var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
                 angularFireAuth.initialize(ref, { scope: $scope, name: "user", messages: "messages" });
                 
                 $scope.messages = [];
 
-                //angularFireAuth(ref, $scope, "messages");
-
                 $scope.addMessage = function(e) {
                     if (e.keyCode != 13) return;
 
                     $scope.messages.push({
-                        name: $scope.name,
+                        name: $scope.name.name,
                         time: $scope.time,
                         code: $scope.code,
                         codeType: $scope.codeType,
