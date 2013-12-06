@@ -3,11 +3,20 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
     <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+      <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+      <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
     <link rel="stylesheet" type="text/css" href="https://www.firebase.com/css/example.css">
   </head>
     <body ng-controller="MyController">
         <h1>ShowMe</h1>
+        
+        
+        <span ng-show="user">
+  {{user.name}} | <a ng-click="logout()">Logout</a>
+</span>
+<span ng-hide="user"><a ng-click="login()">Login</a></span>
+
+
         <div id="messagesDiv">
             <div ng-repeat="msg in messages"><em>{{msg.time}}-{{msg.name}}</em>: {{msg.desc}}</div>
         </div>
@@ -22,16 +31,17 @@
           
             var app = angular.module("myapp", ["firebase"]);
 
-            function MyController($scope, angularFire) {
+            function MyController($scope, angularFireAuth) {
                 var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-
+                angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
+                
                 $scope.messages = [];
 
-                angularFire(ref, $scope, "messages");
+                angularFireAuth(ref, $scope, "messages");
 
-                $scope.addMessage = function (e) {
+                $scope.addMessage = function(e) {
                     if (e.keyCode != 13) return;
-                    
+
                     $scope.messages.push({
                         name: $scope.name,
                         time: $scope.time,
@@ -40,11 +50,19 @@
                         image: $scope.image,
                         desc: $scope.desc
                     });
-                    
+
                     $scope.desc = "";
                     $scope.time = "";
                     $scope.code = "";
-                }
+                };
+                
+                $scope.login = function () {
+                    angularFireAuth.login("facebook");
+                };
+                $scope.logout = function () {
+                    angularFireAuth.logout();
+                };
+
             }
           
 
