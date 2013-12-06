@@ -14,19 +14,17 @@
         
         <span data-ng-show="user">
             {{user.name}} | <a data-ng-click="logout()">Logout</a>
-</span>
-            <div data-ng-show="user" id="messagesDiv">
-                <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}</div>
-            </div>
-
-            <input type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
-
-
-        <span data-ng-hide="user">
-                <a data-ng-click="login()">Login</a>
         </span>
 
+        <div data-ng-show="user" id="messagesDiv">
+            <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}</div>
+        </div>
 
+        <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
+
+        <span data-ng-hide="user">
+            <a data-ng-click="login()">Login</a>
+        </span>
 
         <script>
           
