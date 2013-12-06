@@ -33,12 +33,18 @@
             var app = angular.module("myapp", ["firebase"]);
 
             function MyController($scope, angularFireAuth) {
+                /*
+                angularFireAuth.initialize(new Firebase("https://eysteinbye.firebaseio.com/showme"), {
+                    scope: $rootScope,
+                    name: 'user'
+                });
+                */
                 var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-                //angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
+                angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
                 
                 $scope.messages = [];
 
-                angularFireAuth(ref, $scope, "messages");
+                //angularFireAuth(ref, $scope, "messages");
 
                 $scope.addMessage = function(e) {
                     if (e.keyCode != 13) return;
