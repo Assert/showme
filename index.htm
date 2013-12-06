@@ -32,7 +32,8 @@
             function MyController($scope, angularFireAuth) {
 
                 var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-                angularFireAuth.initialize(ref, { scope: $scope, name: "user", messages: "messages" });
+              //  angularFireAuth.initialize(ref, { scope: $scope, name: "user", messages: "messages" });
+                angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
                 
                 $scope.messages = [];
 
@@ -40,7 +41,7 @@
                     if (e.keyCode != 13) return;
 
                     $scope.messages.push({
-                        name: "EB",
+                        name: "EB",  // Want this to come from {{user.name}} (the login) and push it to the messages array
                         desc: $scope.desc
                     });
 
