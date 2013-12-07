@@ -6,8 +6,8 @@
       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
       <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
       <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
-      
-    <link rel="stylesheet" type="text/css" href="https://www.firebase.com/css/example.css">
+
+      <link rel="stylesheet" type="text/css" href="https://www.firebase.com/css/example.css">
   </head>
     <body data-ng-controller="MyController">
         <h1>ShowMe</h1>
@@ -20,8 +20,10 @@
             <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}</div>
         </div>
 
-        <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
-
+        <label>
+            Message
+            <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
+        </label>
         <span data-ng-hide="user">
             <a data-ng-click="login()">Login</a>
         </span>
