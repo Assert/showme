@@ -25,11 +25,14 @@
             <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
         </label>
         <span data-ng-hide="user">
-            <a data-ng-click="login()">Login</a>
+            <a data-ng-click="loginFacebook()">Login fb</a>
+        </span>
+        <span data-ng-hide="user">
+            <a data-ng-click="loginTwitter()">Login tw</a>
         </span>
 
         <script>
-          
+
             var app = angular.module("myapp", ["firebase"]);
 
             function MyController($scope, angularFire, angularFireAuth) {
@@ -51,14 +54,17 @@
 
                     $scope.desc = "";
                 };
-                
-                $scope.login = function () {
+
+                $scope.loginFacebook = function () {
                     angularFireAuth.login("facebook");
+                };
+                $scope.loginTwitter = function () {
+                    angularFireAuth.login("twitter");
                 };
                 $scope.logout = function () {
                     angularFireAuth.logout();
                 };
-                
+
             }
 
         </script>
