@@ -11,17 +11,20 @@
   </head>
     <body ng-controller="SaveController">
         <h1>ShowMe!</h1>
-        
-        <span ng-show="user">
-            {{user.name}} | <a ng-click="logout()">Logout</a>
+
+        <span ng-hide="user">
+            <a ng-click="loginFacebook()">Login Facebook</a>
+            -
+            <a ng-click="loginTwitter()">Login Twitter</a>
         </span>
 
-        <div ng-show="user" id="outputDiv">
-            <div ng-repeat="product in products"><em>{{product.name}}</em>: {{product.desc}}-{{product.product}}</div>
-        </div>
-
-
         <div ng-show="user">
+            {{user.name}} | <a ng-click="logout()">Logout</a>
+
+            <div id="outputDiv">
+                <div ng-repeat="product in products"><em>{{product.addedBy}}</em>: {{product.desc}}-{{product.product}}</div>
+            </div>
+
             <label>
                 Description
                 <input type="text" ng-model="desc" placeholder="Description...">
@@ -53,14 +56,6 @@
             <br />
             <button ng-click="addProduct()">Save</button>
         </div>
-
-
-        <span ng-hide="user">
-            <a ng-click="loginFacebook()">Login Facebook</a>
-        </span>
-        <span ng-hide="user">
-            <a ng-click="loginTwitter()">Login Twitter</a>
-        </span>
 
     </body>
 </html>
