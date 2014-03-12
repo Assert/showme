@@ -10,7 +10,7 @@ function SaveController($scope, angularFire, angularFireAuth) {
     $scope.products = [];
 
     $scope.addProduct = function(e) {
-        if (e.keyCode != 13) return;
+       // if (e.keyCode != 13) return;
 
         $scope.products.push({
             addedBy: $scope.user.name,
