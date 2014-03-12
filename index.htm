@@ -13,13 +13,14 @@
         <h1>ShowMe!</h1>
 
         <span ng-hide="user">
-            <a ng-click="loginFacebook()">Login Facebook</a>
-            -
-            <a ng-click="loginTwitter()">Login Twitter</a>
+            Login with
+            <a ng-click="loginFacebook()">Facebook</a>
+            or
+            <a ng-click="loginTwitter()">Twitter</a>
         </span>
 
         <div ng-show="user">
-            {{user.name}} | <a ng-click="logout()">Logout</a>
+            Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
 
             <div id="outputDiv">
                 <div ng-repeat="product in products"><em>{{product.addedBy}}</em>: {{product.desc}}-{{product.product}}</div>
@@ -51,7 +52,7 @@
             </label><br />
             <label>
                 Image
-                <input type="text" ng-model="imageUrl" placeholder="Image">
+                <input type="text" ng-model="imageUrl" placeholder="Image...">
             </label>
             <br />
             <button ng-click="addProduct()">Save</button>
