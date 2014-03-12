@@ -6,6 +6,7 @@
       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
       <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
       <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+      <script src="js/controller.js"></script>
 
       <link rel="stylesheet" type="text/css" href="https://www.firebase.com/css/example.css">
   </head>
@@ -36,43 +37,5 @@
             <a data-ng-click="loginTwitter()">Login tw</a>
         </span>
 
-        <script>
-
-            var app = angular.module("myapp", ["firebase"]);
-
-            function MyController($scope, angularFire, angularFireAuth) {
-
-                var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-                angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
-
-                angularFire(ref, $scope, "messages");
-
-                $scope.messages = [];
-
-                $scope.addMessage = function(e) {
-                    if (e.keyCode != 13) return;
-
-                    $scope.messages.push({
-                        name: $scope.user.name,
-                        product: $scope.product,
-                        desc: $scope.desc
-                    });
-
-                    $scope.desc = "";
-                    $scope.product = "";
-                };
-
-                $scope.loginFacebook = function () {
-                    angularFireAuth.login("facebook");
-                };
-                $scope.loginTwitter = function () {
-                    angularFireAuth.login("twitter");
-                };
-                $scope.logout = function () {
-                    angularFireAuth.logout();
-                };
-            }
-
-        </script>
     </body>
 </html>
