@@ -1,6 +1,6 @@
 'use strict';
-describe("showme controllers" , function(){
-    it("spec name", function () {
+describe("SaveController" , function(){
+    it("Can save", function testSave() {
         expect(false).toEqual(true);
     });
 });
