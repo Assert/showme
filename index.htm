@@ -48,16 +48,18 @@
             </label><br />
             <label>
                 Image
-                <input type="text" data-ng-model="imageUrl" data-ng-keydown="addProduct($event)" placeholder="Image">
+                <input type="text" data-ng-model="imageUrl" placeholder="Image">
             </label>
+            <br />
+            <button data-ng-click="addProduct()">Save</button>
         </div>
 
 
         <span data-ng-hide="user">
-            <a data-ng-click="loginFacebook()">Login fb</a>
+            <a data-ng-click="loginFacebook()">Login Facebook</a>
         </span>
         <span data-ng-hide="user">
-            <a data-ng-click="loginTwitter()">Login tw</a>
+            <a data-ng-click="loginTwitter()">Login Twitter</a>
         </span>
 
     </body>
