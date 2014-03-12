@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html data-ng-app="showMe">
+<html ng-app="showMe">
   <head>
       <title>ShowMe!</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
@@ -9,58 +9,57 @@
       <script src="js/controller.js"></script>
       <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-    <body data-ng-controller="SaveController">
+    <body ng-controller="SaveController">
         <h1>ShowMe!</h1>
         
-        <span data-ng-show="user">
-            {{user.name}} | <a data-ng-click="logout()">Logout</a>
+        <span ng-show="user">
+            {{user.name}} | <a ng-click="logout()">Logout</a>
         </span>
 
-        <div data-ng-show="user" id="outputDiv">
-            <div data-ng-repeat="product in products"><em>{{product.name}}</em>: {{product.desc}}-{{product.product}}</div>
+        <div ng-show="user" id="outputDiv">
+            <div ng-repeat="product in products"><em>{{product.name}}</em>: {{product.desc}}-{{product.product}}</div>
         </div>
 
 
-        <div data-ng-show="user">
+        <div ng-show="user">
             <label>
                 Description
-                <input type="text" data-ng-model="desc" data-ng-keydown="addProduct($event)" placeholder="Description...">
+                <input type="text" ng-model="desc" placeholder="Description...">
             </label><br />
             <label>
                 Product name
-                <input type="text" data-ng-model="product" data-ng-keydown="addProduct($event)" placeholder="Product name...">
+                <input type="text" ng-model="product" placeholder="Product name...">
             </label><br />
             <label>
                 Time
-                <input type="text" data-ng-model="startTime" data-ng-keydown="addProduct($event)" placeholder="Time...">
+                <input type="text" ng-model="startTime" placeholder="Time...">
             </label><br />
             <label>
                 ShowID
-                <input type="text" data-ng-model="showId" data-ng-keydown="addProduct($event)" placeholder="ShowID...">
+                <input type="text" ng-model="showId" placeholder="ShowID...">
             </label><br />
             <label>
                 Code
-                <input type="text" data-ng-model="code" data-ng-keydown="addProduct($event)" placeholder="Code...">
+                <input type="text" ng-model="code" placeholder="Code...">
             </label><br />
             <label>
                 CodeType
-                <input type="text" data-ng-model="codeType" data-ng-keydown="addProduct($event)" placeholder="CodeType...">
+                <input type="text" ng-model="codeType" placeholder="CodeType...">
             </label><br />
             <label>
                 Image
-                <input type="text" data-ng-model="imageUrl" placeholder="Image">
+                <input type="text" ng-model="imageUrl" placeholder="Image">
             </label>
             <br />
-            <button data-ng-click="addProduct()">Save</button>
-
+            <button ng-click="addProduct()">Save</button>
         </div>
 
 
-        <span data-ng-hide="user">
-            <a data-ng-click="loginFacebook()">Login Facebook</a>
+        <span ng-hide="user">
+            <a ng-click="loginFacebook()">Login Facebook</a>
         </span>
-        <span data-ng-hide="user">
-            <a data-ng-click="loginTwitter()">Login Twitter</a>
+        <span ng-hide="user">
+            <a ng-click="loginTwitter()">Login Twitter</a>
         </span>
 
     </body>
