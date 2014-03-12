@@ -15,6 +15,11 @@ function SaveController($scope, angularFire, angularFireAuth) {
         $scope.messages.push({
             name: $scope.user.name,
             product: $scope.product,
+            startTime: $scope.startTime,
+            showId: $scope.showId,
+            code: $scope.code,
+            codeType: $scope.codeType,
+            imageUrl: $scope.imageUrl,
             desc: $scope.desc
         });
 

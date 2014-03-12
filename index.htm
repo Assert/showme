@@ -7,7 +7,6 @@
       <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
       <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
       <script src="js/controller.js"></script>
-
       <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
     <body data-ng-controller="SaveController">
@@ -22,12 +21,32 @@
         </div>
 
         <label>
-            Message
-            <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
+            Description
+            <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Description...">
         </label>
         <label>
             Product name
             <input data-ng-show="user" type="text" data-ng-model="product" data-ng-keydown="addMessage($event)" placeholder="Product name...">
+        </label>
+        <label>
+            Time
+            <input data-ng-show="user" type="text" data-ng-model="startTime" data-ng-keydown="addMessage($event)" placeholder="Time...">
+        </label>
+        <label>
+            ShowID
+            <input data-ng-show="user" type="text" data-ng-model="showId" data-ng-keydown="addMessage($event)" placeholder="ShowID...">
+        </label>
+        <label>
+            Code
+            <input data-ng-show="user" type="text" data-ng-model="code" data-ng-keydown="addMessage($event)" placeholder="Code...">
+        </label>
+        <label>
+            CodeType
+            <input data-ng-show="user" type="text" data-ng-model="codeType" data-ng-keydown="addMessage($event)" placeholder="CodeType...">
+        </label>
+        <label>
+            Image
+            <input data-ng-show="user" type="text" data-ng-model="imageUrl" data-ng-keydown="addMessage($event)" placeholder="Image">
         </label>
 
         <span data-ng-hide="user">
