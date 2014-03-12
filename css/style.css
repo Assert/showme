@@ -11,8 +11,13 @@ body {
    /* text-align: center; */
 }
 
+label{
+    width:200px;
+}
+
 input {
     font-size: 24px;
+    width:300px;
 }
 
 input[type=text] {
