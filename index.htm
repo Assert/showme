@@ -17,33 +17,33 @@
         </span>
 
         <div data-ng-show="user" id="messagesDiv">
-            <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}-{{msg.product}}</div>
+            <div data-ng-repeat="msg in products"><em>{{msg.name}}</em>: {{msg.desc}}-{{msg.product}}</div>
         </div>
 
         <label>
             Description
             <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Description...">
-        </label>
+        </label><br />
         <label>
             Product name
             <input data-ng-show="user" type="text" data-ng-model="product" data-ng-keydown="addMessage($event)" placeholder="Product name...">
-        </label>
+        </label><br />
         <label>
             Time
             <input data-ng-show="user" type="text" data-ng-model="startTime" data-ng-keydown="addMessage($event)" placeholder="Time...">
-        </label>
+        </label><br />
         <label>
             ShowID
             <input data-ng-show="user" type="text" data-ng-model="showId" data-ng-keydown="addMessage($event)" placeholder="ShowID...">
-        </label>
+        </label><br />
         <label>
             Code
             <input data-ng-show="user" type="text" data-ng-model="code" data-ng-keydown="addMessage($event)" placeholder="Code...">
-        </label>
+        </label><br />
         <label>
             CodeType
             <input data-ng-show="user" type="text" data-ng-model="codeType" data-ng-keydown="addMessage($event)" placeholder="CodeType...">
-        </label>
+        </label><br />
         <label>
             Image
             <input data-ng-show="user" type="text" data-ng-model="imageUrl" data-ng-keydown="addMessage($event)" placeholder="Image">

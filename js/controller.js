@@ -5,14 +5,14 @@ function SaveController($scope, angularFire, angularFireAuth) {
     var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
     angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
 
-    angularFire(ref, $scope, "messages");
+    angularFire(ref, $scope, "products");
 
-    $scope.messages = [];
+    $scope.products = [];
 
     $scope.addMessage = function(e) {
         if (e.keyCode != 13) return;
 
-        $scope.messages.push({
+        $scope.products.push({
             name: $scope.user.name,
             product: $scope.product,
             startTime: $scope.startTime,
