@@ -30,6 +30,10 @@ input[type=text] {
     background-color: white;
 }
 
+span.labelText{
+    width:200px;
+}
+
 #outputDiv {
     background-color: white;
     overflow: auto;
