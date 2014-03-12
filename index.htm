@@ -24,6 +24,11 @@
             Message
             <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Message...">
         </label>
+        <label>
+            Product name
+            <input data-ng-show="user" type="text" data-ng-model="product" data-ng-keydown="addMessage($event)" placeholder="Product name...">
+        </label>
+
         <span data-ng-hide="user">
             <a data-ng-click="loginFacebook()">Login fb</a>
         </span>
@@ -49,10 +54,12 @@
 
                     $scope.messages.push({
                         name: $scope.user.name,
+                        product: $scope.product,
                         desc: $scope.desc
                     });
 
                     $scope.desc = "";
+                    $scope.product = "";
                 };
 
                 $scope.loginFacebook = function () {
