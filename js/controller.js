@@ -13,7 +13,7 @@ function SaveController($scope, angularFire, angularFireAuth) {
         if (e.keyCode != 13) return;
 
         $scope.products.push({
-            name: $scope.user.name,
+            addedBy: $scope.user.name,
             product: $scope.product,
             startTime: $scope.startTime,
             showId: $scope.showId,
