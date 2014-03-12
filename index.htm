@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html data-ng-app="myapp">
+<html data-ng-app="showMe">
   <head>
       <title>ShowMe</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
@@ -8,9 +8,9 @@
       <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
       <script src="js/controller.js"></script>
 
-      <link rel="stylesheet" type="text/css" href="https://www.firebase.com/css/example.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-    <body data-ng-controller="MyController">
+    <body data-ng-controller="SaveController">
         <h1>ShowMe.</h1>
         
         <span data-ng-show="user">
@@ -18,7 +18,7 @@
         </span>
 
         <div data-ng-show="user" id="messagesDiv">
-            <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}</div>
+            <div data-ng-repeat="msg in messages"><em>{{msg.name}}</em>: {{msg.desc}}-{{msg.product}}</div>
         </div>
 
         <label>

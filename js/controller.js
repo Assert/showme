@@ -1,6 +1,6 @@
-var app = angular.module("myapp", ["firebase"]);
+var app = angular.module("showMe", ["firebase"]);
 
-function MyController($scope, angularFire, angularFireAuth) {
+function SaveController($scope, angularFire, angularFireAuth) {
 
     var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
     angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
