@@ -9,7 +9,7 @@ function SaveController($scope, angularFire, angularFireAuth) {
 
     $scope.products = [];
 
-    $scope.addMessage = function(e) {
+    $scope.addProduct = function(e) {
         if (e.keyCode != 13) return;
 
         $scope.products.push({
@@ -23,8 +23,13 @@ function SaveController($scope, angularFire, angularFireAuth) {
             desc: $scope.desc
         });
 
-        $scope.desc = "";
         $scope.product = "";
+        $scope.startTime = "";
+        $scope.showId = "";
+        $scope.code = "";
+        $scope.codeType = "";
+        $scope.imageUrl = "";
+        $scope.desc = "";
     };
 
     $scope.loginFacebook = function () {

@@ -46,7 +46,7 @@ em {
 }
 
 /* Chat */
-#messagesDiv {
+#outputDiv {
     background-color: white;
     overflow: auto;
     height: 230px;

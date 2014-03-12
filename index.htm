@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html data-ng-app="showMe">
   <head>
-      <title>ShowMe</title>
+      <title>ShowMe!</title>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
       <script src="https://cdn.firebase.com/v0/firebase.js"></script>
       <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
@@ -10,43 +10,43 @@
       <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
     <body data-ng-controller="SaveController">
-        <h1>ShowMe.</h1>
+        <h1>ShowMe!</h1>
         
         <span data-ng-show="user">
             {{user.name}} | <a data-ng-click="logout()">Logout</a>
         </span>
 
-        <div data-ng-show="user">
+        <div data-ng-show="user" id="outputDiv">
             <div data-ng-repeat="product in products"><em>{{product.name}}</em>: {{product.desc}}-{{product.product}}</div>
         </div>
 
         <label>
             Description
-            <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addMessage($event)" placeholder="Description...">
+            <input data-ng-show="user" type="text" data-ng-model="desc" data-ng-keydown="addProduct($event)" placeholder="Description...">
         </label><br />
         <label>
             Product name
-            <input data-ng-show="user" type="text" data-ng-model="product" data-ng-keydown="addMessage($event)" placeholder="Product name...">
+            <input data-ng-show="user" type="text" data-ng-model="product" data-ng-keydown="addProduct($event)" placeholder="Product name...">
         </label><br />
         <label>
             Time
-            <input data-ng-show="user" type="text" data-ng-model="startTime" data-ng-keydown="addMessage($event)" placeholder="Time...">
+            <input data-ng-show="user" type="text" data-ng-model="startTime" data-ng-keydown="addProduct($event)" placeholder="Time...">
         </label><br />
         <label>
             ShowID
-            <input data-ng-show="user" type="text" data-ng-model="showId" data-ng-keydown="addMessage($event)" placeholder="ShowID...">
+            <input data-ng-show="user" type="text" data-ng-model="showId" data-ng-keydown="addProduct($event)" placeholder="ShowID...">
         </label><br />
         <label>
             Code
-            <input data-ng-show="user" type="text" data-ng-model="code" data-ng-keydown="addMessage($event)" placeholder="Code...">
+            <input data-ng-show="user" type="text" data-ng-model="code" data-ng-keydown="addProduct($event)" placeholder="Code...">
         </label><br />
         <label>
             CodeType
-            <input data-ng-show="user" type="text" data-ng-model="codeType" data-ng-keydown="addMessage($event)" placeholder="CodeType...">
+            <input data-ng-show="user" type="text" data-ng-model="codeType" data-ng-keydown="addProduct($event)" placeholder="CodeType...">
         </label><br />
         <label>
             Image
-            <input data-ng-show="user" type="text" data-ng-model="imageUrl" data-ng-keydown="addMessage($event)" placeholder="Image">
+            <input data-ng-show="user" type="text" data-ng-model="imageUrl" data-ng-keydown="addProduct($event)" placeholder="Image">
         </label>
 
         <span data-ng-hide="user">
