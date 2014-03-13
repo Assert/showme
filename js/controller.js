@@ -65,9 +65,10 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
     };
 });
 
+//app.controller('SaveController', function($scope, productsService, firebaseAuth) {
+var SaveController = function($scope, productsService, firebaseAuth) {
+//app.controller('SaveController', ['$scope','productsService','firebaseAuth', function($scope, productsService, firebaseAuth) {
 
-
-app.controller('SaveController', function($scope, productsService, firebaseAuth) {
     productsService.init($scope, 'products');
 
     $scope.addProduct = function() {
@@ -92,4 +93,36 @@ app.controller('SaveController', function($scope, productsService, firebaseAuth)
     $scope.logout = function () {
         firebaseAuth.logout();
     };
-});
+};
+//}]);
+
+
+
+//
+//var SaveController = function($scope, productsService, firebaseAuth) {
+//    productsService.init($scope, 'products');
+//
+//    $scope.addProduct = function() {
+//        productsService.addItem($scope,{
+//            addedBy: $scope.user.name,
+//            product: $scope.product,
+//            startTime: $scope.startTime,
+//            showId: $scope.showId,
+//            code: $scope.code,
+//            codeType: $scope.codeType,
+//            imageUrl: $scope.imageUrl,
+//            desc: $scope.desc
+//        });
+//    };
+//
+//    $scope.loginFacebook = function () {
+//        firebaseAuth.loginFb();
+//    };
+//    $scope.loginTwitter = function () {
+//        firebaseAuth.loginTw();
+//    };
+//    $scope.logout = function () {
+//        firebaseAuth.logout();
+//    };
+//
+//}
