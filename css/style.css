@@ -32,15 +32,3 @@ input[type=text] {
 span.labelText{
     width:200px;
 }
-
-#outputDiv {
-    background-color: white;
-    overflow: auto;
-    height: 230px;
-    width: 100%;
-    padding: 10px;
-    border: 8px solid #424547;
-    margin-bottom: 5px;
-    text-align: left;
-}
-

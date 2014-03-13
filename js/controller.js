@@ -70,20 +70,21 @@ var SaveController = function($scope, productsService, firebaseAuth) {
 //app.controller('SaveController', ['$scope','productsService','firebaseAuth', function($scope, productsService, firebaseAuth) {
 
     productsService.init($scope, 'products');
-
+    $scope.item = {};
     $scope.addProduct = function() {
         productsService.addItem($scope,{
             addedBy: $scope.user.name,
-            product: $scope.product,
-            startTime: $scope.startTime,
-            showId: $scope.showId,
-            code: $scope.code,
-            codeType: $scope.codeType,
-            imageUrl: $scope.imageUrl,
-            desc: $scope.desc
+            product: $scope.item.product,
+            startTime: $scope.item.startTime,
+            showId: $scope.item.showId,
+            code: $scope.item.code,
+            codeType: $scope.item.codeType,
+            imageUrl: $scope.item.imageUrl,
+            desc: $scope.item.desc
         });
     };
 
+    $scope.selectedProduct = {desc:'kl'};
     $scope.loginFacebook = function () {
         firebaseAuth.loginFb();
     };
@@ -93,36 +94,7 @@ var SaveController = function($scope, productsService, firebaseAuth) {
     $scope.logout = function () {
         firebaseAuth.logout();
     };
+
 };
 //}]);
 
-
-
-//
-//var SaveController = function($scope, productsService, firebaseAuth) {
-//    productsService.init($scope, 'products');
-//
-//    $scope.addProduct = function() {
-//        productsService.addItem($scope,{
-//            addedBy: $scope.user.name,
-//            product: $scope.product,
-//            startTime: $scope.startTime,
-//            showId: $scope.showId,
-//            code: $scope.code,
-//            codeType: $scope.codeType,
-//            imageUrl: $scope.imageUrl,
-//            desc: $scope.desc
-//        });
-//    };
-//
-//    $scope.loginFacebook = function () {
-//        firebaseAuth.loginFb();
-//    };
-//    $scope.loginTwitter = function () {
-//        firebaseAuth.loginTw();
-//    };
-//    $scope.logout = function () {
-//        firebaseAuth.logout();
-//    };
-//
-//}

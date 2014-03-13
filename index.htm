@@ -21,39 +21,42 @@
         </span>
 
         <div ng-show="user">
-            Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
+            <header>
+                Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
+            </header>
 
-            <div id="outputDiv">
-                <div ng-repeat="product in products"><em>{{product.addedBy}}</em>: {{product.desc}}-{{product.product}}</div>
-            </div>
+            Products:
+            <select ng-model="item" ng-options="p.product for p in products"></select><br>
 
-            <label>
-                <span class="labelText">Description</span>
-                <input type="text" ng-model="desc" placeholder="Description...">
-            </label><br />
             <label>
                 <span class="labelText">Product name</span>
-                <input type="text" ng-model="product" placeholder="Product name...">
+                <input type="text" ng-model="item.product" placeholder="Product name.....">
+
             </label><br />
             <label>
+                <span class="labelText">Description</span>
+                <input type="text" ng-model="item.desc" placeholder="Description...">
+            </label><br />
+
+            <label>
                 <span class="labelText">Time</span>
-                <input type="text" ng-model="startTime" placeholder="Time...">
+                <input type="text" ng-model="item.startTime" placeholder="Time...">
             </label><br />
             <label>
                 <span class="labelText">ShowID</span>
-                <input type="text" ng-model="showId" placeholder="ShowID...">
+                <input type="text" ng-model="item.showId" placeholder="ShowID...">
             </label><br />
             <label>
                 <span class="labelText">Code</span>
-                <input type="text" ng-model="code" placeholder="Code...">
+                <input type="text" ng-model="item.code" placeholder="Code...">
             </label><br />
             <label>
                 <span class="labelText">CodeType</span>
-                <input type="text" ng-model="codeType" placeholder="CodeType...">
+                <input type="text" ng-model="item.codeType" placeholder="CodeType...">
             </label><br />
             <label>
                 <span class="labelText">Image</span>
-                <input type="text" ng-model="imageUrl" placeholder="Image...">
+                <input type="text" ng-model="item.imageUrl" placeholder="Image...">
             </label>
             <br />
             <button ng-click="addProduct()">Save</button>

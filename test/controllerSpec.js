@@ -22,9 +22,10 @@ describe('SaveController', function() {
             $scope.products = [];
         },
         addItem : function(scope,item){
-//            $scope.products = item;
             $scope.products.push(item);
-
+        },
+        getItem : function(scope,nr){
+            return nr;
         }
     };
 
@@ -48,13 +49,13 @@ describe('SaveController', function() {
     it('should be able to add products', function(){
         var controller = createController(psMock,faMock);
         $scope.user = {name:'Fake user how adds stuff'};
-        $scope.product = 'Product name';
-        $scope.startTime = 'Start time';
-        $scope.showId = 'Show ID';
-        $scope.code = 'Code';
-        $scope.codeType = 'Code type';
-        $scope.imageUrl = 'Image Url';
-        $scope.desc = 'Description';
+        $scope.item.product = 'Product name';
+        $scope.item.startTime = 'Start time';
+        $scope.item.showId = 'Show ID';
+        $scope.item.code = 'Code';
+        $scope.item.codeType = 'Code type';
+        $scope.item.imageUrl = 'Image Url';
+        $scope.item.desc = 'Description';
 
         $scope.addProduct();
         expect($scope.products[0].addedBy).toBe('Fake user how adds stuff');
@@ -96,5 +97,6 @@ describe('SaveController', function() {
         $scope.logout();
         expect($scope.loginStatus).toBe('Logout');
     });
+
 
 });
