@@ -35,7 +35,7 @@ app.factory('firebaseAuth', function($rootScope) {
 
 app.factory('productsService', function myService(angularFire,firebaseAuth) {
     return {
-        init: function(scope, xxx) {
+        init: function(scope, arrName) {
 
             scope.products = [];
 
@@ -57,7 +57,7 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
             });
 
             var _ref = new Firebase(app.FIREBASE);
-            angularFire(_ref, scope, xxx);
+            angularFire(_ref, scope, arrName);
         },
         addItem: function(scope,item){
             scope.products.push(item);
@@ -65,7 +65,9 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
     };
 });
 
-var SaveController = function($scope, productsService,firebaseAuth) {
+
+
+app.controller('SaveController', function($scope, productsService, firebaseAuth) {
     productsService.init($scope, 'products');
 
     $scope.addProduct = function() {
@@ -88,7 +90,6 @@ var SaveController = function($scope, productsService,firebaseAuth) {
         firebaseAuth.loginTw();
     };
     $scope.logout = function () {
-        firebaseAuth.logout()
+        firebaseAuth.logout();
     };
-
-}
+});
