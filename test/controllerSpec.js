@@ -1,4 +1,5 @@
-//params initialised in scope for tests
+/// <reference path="../lib/angular/angular-mocks.js" />
+
 describe("angular controller", function(){
 
     var ctrl, scope;
