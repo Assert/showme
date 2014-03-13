@@ -65,7 +65,6 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
     };
 });
 
-
 var SaveController = function($scope, productsService,firebaseAuth) {
     productsService.init($scope, 'products');
 

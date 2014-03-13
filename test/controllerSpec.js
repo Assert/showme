@@ -1,12 +1,5 @@
 
-//
-//describe('myService test', function(){
-//    it('returns 1', function(){
-//        expect( "1").toEqual('1');
-//    })
-//});
-
-describe('NavCtrl', function() {
+describe('SaveController', function() {
     var $scope, $rootScope, createController;
 
     beforeEach(inject(function($injector) {
@@ -24,38 +17,55 @@ describe('NavCtrl', function() {
         };
     }));
 
-    it('should have a method to check if the path is active', function() {
+    var psMock = {
+        init: function(scope,name) {
+            $scope.products = null;
+        },
+        addItem : function(scope,item){
+            $scope.products = item;
+        }
+    };
 
-        var psMock = {
-            init: function(scope,name) {
-                $scope.products = null;
-            },
-            addItem : function(scope,item){
-                $scope.products = item;
-            }
-        };
+    var faMock = {
+        loginFb: function(){
+            $scope.loginStatus = 'FaceBook';
+        },
+        loginTw: function(){
+            $scope.loginStatus = 'Twitter';
+        },
+        logout: function(){
+            $scope.loginStatus = 'Logout';
+        }
+    };
 
-        var faMock = {
-            loginFb: function(){
-                $scope.ee=null;
-            },
-            loginTw: function(){
-                $scope.ee=null;
-            },
-            logout: function(){
-                $scope.ee=null;
-            }
-        };
-
+    it('should have no products at init', function() {
         var controller = createController(psMock,faMock);
-
         expect($scope.products).toBe(null);
-
-        // Set fake login user
-        $scope.user = {name:"TheFakeUser how adds stuff"};
-        $scope.addProduct();
-
-        expect($scope.products.addedBy).toBe('TheFakeUser how adds stuff');
-
     });
+
+    it('should be able to add products', function(){
+        var controller = createController(psMock,faMock);
+        $scope.user = {name:"Fake user how adds stuff"};
+        $scope.addProduct();
+        expect($scope.products.addedBy).toBe('Fake user how adds stuff');
+    });
+
+    it('should be able to login via FaceBook', function(){
+        var controller = createController(psMock,faMock);
+        $scope.loginFacebook();
+        expect($scope.loginStatus).toBe('FaceBook');
+    });
+
+    it('should be able to login via Twitter', function(){
+        var controller = createController(psMock,faMock);
+        $scope.loginTwitter();
+        expect($scope.loginStatus).toBe('Twitter');
+    });
+
+    it('should be able to login via FaceBook', function(){
+        var controller = createController(psMock,faMock);
+        $scope.logout();
+        expect($scope.loginStatus).toBe('Logout');
+    });
+
 });
