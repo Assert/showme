@@ -1,16 +1,37 @@
 var app = angular.module("showMe", ["firebase"]);
 
-function SaveController($scope, angularFire, angularFireAuth) {
+app.factory('itemService', function myService(angularFire, angularFireAuth) {
+    var _ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
 
-    var ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
-    angularFireAuth.initialize(ref, { scope: $scope, name: "user" });
+    return {
+        qqqq: function(scope, xxx,yyy) {
 
-    angularFire(ref, $scope, "products");
+            angularFireAuth.initialize(_ref, { scope: scope, name: yyy });
+
+            angularFire(_ref, scope, xxx);
+        },
+        addItem: function(item){
+            _ref.push(item);
+        },
+        loginFacebook: function(){
+            angularFireAuth.login("facebook");
+        },
+        loginTwitter: function(){
+            angularFireAuth.login("twitter");
+        },
+        logout: function(){
+            angularFireAuth.logout();
+        }
+    };
+});
+
+function SaveController($scope, itemService) {
+    itemService.qqqq($scope, 'products','user');
 
     $scope.products = [];
 
     $scope.addProduct = function() {
-        $scope.products.push({
+        itemService.addItem({
             addedBy: $scope.user.name,
             product: $scope.product,
             startTime: $scope.startTime,
@@ -20,23 +41,28 @@ function SaveController($scope, angularFire, angularFireAuth) {
             imageUrl: $scope.imageUrl,
             desc: $scope.desc
         });
-
-        $scope.product = "";
-        $scope.startTime = "";
-        $scope.showId = "";
-        $scope.code = "";
-        $scope.codeType = "";
-        $scope.imageUrl = "";
-        $scope.desc = "";
+        $scope.products = [];
     };
+
+
+
+
+//        $scope.product = "";
+//        $scope.startTime = "";
+//        $scope.showId = "";
+//        $scope.code = "";
+//        $scope.codeType = "";
+//        $scope.imageUrl = "";
+//        $scope.desc = "";
+//    };
 
     $scope.loginFacebook = function () {
-        angularFireAuth.login("facebook");
+        itemService.loginFacebook();
     };
     $scope.loginTwitter = function () {
-        angularFireAuth.login("twitter");
+        itemService.loginTwitter();
     };
     $scope.logout = function () {
-        angularFireAuth.logout();
+        itemService.logout();
     };
 }
