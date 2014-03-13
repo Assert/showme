@@ -1,37 +1,73 @@
 var app = angular.module("showMe", ["firebase"]);
 
-app.factory('itemService', function myService(angularFire, angularFireAuth) {
-    var _ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
+app.factory('firebaseAuth', function($rootScope) {
+    var _ref = new Firebase('https://eysteinbye.firebaseio.com/showme');
 
+    var auth = {};
+    auth.broadcastAuthEvent = function() {
+        $rootScope.$broadcast('authEvent');
+    };
+    auth.client = new FirebaseAuthClient(_ref, function(error, user) {
+        if (error) {
+            // todo: add login page
+        } else if (user) {
+            auth.user = user;
+            auth.broadcastAuthEvent();
+        } else {
+            auth.user = null;
+            auth.broadcastAuthEvent();
+        }
+    });
+    auth.loginTw = function() {
+        this.client.login('twitter');
+    };
+    auth.loginFb = function() {
+        this.client.login('facebook');
+    };
+    auth.logout = function() {
+        this.client.logout();
+    };
+
+    return auth;
+});
+
+app.factory('itemService', function myService(angularFire,firebaseAuth) {
     return {
-        qqqq: function(scope, xxx,yyy) {
+        init: function(scope, xxx) {
 
-            angularFireAuth.initialize(_ref, { scope: scope, name: yyy });
+            scope.products = [];
 
+            scope.safeApply = function(fn) {
+                var phase = this.$root.$$phase;
+                if (phase == '$apply' || phase == '$digest') {
+                    if(fn && (typeof(fn) === 'function')) {
+                        fn();
+                    }
+                } else {
+                    this.$apply(fn);
+                }
+            };
+
+            scope.$on('authEvent', function() {
+                scope.safeApply(function() {
+                    scope.user = firebaseAuth.user;
+                });
+            });
+
+            var _ref = new Firebase("https://eysteinbye.firebaseio.com/showme");
             angularFire(_ref, scope, xxx);
         },
-        addItem: function(item){
-            _ref.push(item);
-        },
-        loginFacebook: function(){
-            angularFireAuth.login("facebook");
-        },
-        loginTwitter: function(){
-            angularFireAuth.login("twitter");
-        },
-        logout: function(){
-            angularFireAuth.logout();
+        addItem: function(scope,item){
+            scope.products.push(item);
         }
     };
 });
 
-function SaveController($scope, itemService) {
-    itemService.qqqq($scope, 'products','user');
-
-    $scope.products = [];
+var SaveController = function($scope, itemService,firebaseAuth) {
+    itemService.init($scope, 'products');
 
     $scope.addProduct = function() {
-        itemService.addItem({
+        itemService.addItem($scope,{
             addedBy: $scope.user.name,
             product: $scope.product,
             startTime: $scope.startTime,
@@ -41,28 +77,16 @@ function SaveController($scope, itemService) {
             imageUrl: $scope.imageUrl,
             desc: $scope.desc
         });
-        $scope.products = [];
     };
-
-
-
-
-//        $scope.product = "";
-//        $scope.startTime = "";
-//        $scope.showId = "";
-//        $scope.code = "";
-//        $scope.codeType = "";
-//        $scope.imageUrl = "";
-//        $scope.desc = "";
-//    };
 
     $scope.loginFacebook = function () {
-        itemService.loginFacebook();
+        firebaseAuth.loginFb();
     };
     $scope.loginTwitter = function () {
-        itemService.loginTwitter();
+        firebaseAuth.loginTw();
     };
     $scope.logout = function () {
-        itemService.logout();
+        firebaseAuth.logout()
     };
+
 }
