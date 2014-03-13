@@ -7,36 +7,47 @@
 //});
 
 describe('NavCtrl', function() {
-    var $scope, $location, $rootScope, createController;
+    var $scope, $rootScope, createController;
 
     beforeEach(inject(function($injector) {
-        $location = $injector.get('$location');
         $rootScope = $injector.get('$rootScope');
         $scope = $rootScope.$new();
 
         var $controller = $injector.get('$controller');
 
-        createController = function(x) {
+        createController = function(ps,fa) {
             return $controller('SaveController', {
                 '$scope': $scope,
-                'productsService':x,
-                'xx':null
+                'productsService':ps,
+                'firebaseAuth':fa
             });
         };
     }));
 
     it('should have a method to check if the path is active', function() {
 
-        var xx = {
-            init: function(params,ss) {
+        var psMock = {
+            init: function(scope,name) {
                 $scope.products = null;
             },
-            addItem : function(aa,bb){
-                $scope.products = bb;
+            addItem : function(scope,item){
+                $scope.products = item;
             }
         };
 
-        var controller = createController(xx);
+        var faMock = {
+            loginFb: function(){
+                $scope.ee=null;
+            },
+            loginTw: function(){
+                $scope.ee=null;
+            },
+            logout: function(){
+                $scope.ee=null;
+            }
+        };
+
+        var controller = createController(psMock,faMock);
 
         expect($scope.products).toBe(null);
 

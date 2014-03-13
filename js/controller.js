@@ -66,10 +66,9 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
 });
 
 
-var SaveController = function($scope, productsService) {
-//var SaveController = function($scope, productsService,firebaseAuth) {
+var SaveController = function($scope, productsService,firebaseAuth) {
     productsService.init($scope, 'products');
-//
+
     $scope.addProduct = function() {
         productsService.addItem($scope,{
             addedBy: $scope.user.name,
@@ -82,15 +81,15 @@ var SaveController = function($scope, productsService) {
             desc: $scope.desc
         });
     };
-//
-//    $scope.loginFacebook = function () {
-//        firebaseAuth.loginFb();
-//    };
-//    $scope.loginTwitter = function () {
-//        firebaseAuth.loginTw();
-//    };
-//    $scope.logout = function () {
-//        firebaseAuth.logout()
-//    };
+
+    $scope.loginFacebook = function () {
+        firebaseAuth.loginFb();
+    };
+    $scope.loginTwitter = function () {
+        firebaseAuth.loginTw();
+    };
+    $scope.logout = function () {
+        firebaseAuth.logout()
+    };
 
 }
