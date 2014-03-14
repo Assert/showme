@@ -80,10 +80,20 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
             imageUrl: $scope.item.imageUrl,
             desc: $scope.item.desc
         });
+        $scope.clear();
     };
 
-    $scope.removeProduct = function (index) {
+    $scope.editProduct = function() {
+      alert('Not ready');
+    };
+
+    $scope.clear = function () {
+        $scope.item = {};
+    };
+    $scope.removeProduct = function (elem) {
+        var index = $scope.products.indexOf(elem);
         $scope.products.splice(index, 1);
+        $scope.clear();
     };
     $scope.loginFacebook = function () {
         firebaseAuth.loginFb();

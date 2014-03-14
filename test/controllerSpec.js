@@ -121,16 +121,21 @@ describe('SaveController', function() {
     it('delete specific product', function() {
         var controller = createController(fsMock, faMock);
         $scope.loginFacebook();
+
         $scope.item.desc = 'A';
         $scope.addProduct();
         $scope.item.desc = 'B';
         $scope.addProduct();
         $scope.item.desc = 'C';
         $scope.addProduct();
-        expect($scope.products[1].desc).toEqual("B");
-        $scope.removeProduct(1);
-        expect($scope.products[1].desc).toEqual("C");
-        $scope.removeProduct(1);
+
+        var itemB = $scope.products[1];
+        var itemC = $scope.products[2];
+
+        expect($scope.products[1].desc).toEqual(itemB.desc);
+        $scope.removeProduct(itemB);
+        expect($scope.products[1].desc).toEqual(itemC.desc);
+        $scope.removeProduct(itemC);
         expect($scope.products[1]).toEqual(undefined);
     })
 
