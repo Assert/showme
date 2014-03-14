@@ -70,7 +70,12 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
     firebaseService.init($scope, 'products');
 
     $scope.addProduct = function() {
-        $scope.products.push({
+        $scope.products.push($scope.getActiveProduct());
+        $scope.clear();
+    };
+    // todo: Denne blir "egentlig" private.. skal vi lage test på den... ?
+    $scope.getActiveProduct = function() {
+        return {
             addedBy: $scope.user.name,
             product: $scope.item.product,
             startTime: $scope.item.startTime,
@@ -79,8 +84,7 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
             codeType: $scope.item.codeType,
             imageUrl: $scope.item.imageUrl,
             desc: $scope.item.desc
-        });
-        $scope.clear();
+        };
     };
 
     $scope.editProduct = function() {
@@ -90,10 +94,15 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
     $scope.clear = function () {
         $scope.item = {};
     };
+    // todo: Denne blir "egentlig" private.. skal vi lage test på den... ?
     $scope.removeProduct = function (elem) {
-        var index = $scope.products.indexOf(elem);
+        var index = $scope.getIndexOfElement(elem);
         $scope.products.splice(index, 1);
         $scope.clear();
+    };
+    $scope.getIndexOfElement = function (elem) {
+        var index = $scope.products.indexOf(elem);
+        return index;
     };
     $scope.loginFacebook = function () {
         firebaseAuth.loginFb();
