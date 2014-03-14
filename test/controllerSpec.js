@@ -8,16 +8,16 @@ describe('SaveController', function() {
 
         var $controller = $injector.get('$controller');
 
-        createController = function(ps,fa) {
+        createController = function(fs,fa) {
             return $controller('SaveController', {
                 '$scope': $scope,
-                'productsService':ps,
+                'firebaseService':fs,
                 'firebaseAuth':fa
             });
         };
     }));
 
-    var psMock = {
+    var fsMock = {
         init: function(scope,name) {
             $scope.products = [];
         },
@@ -39,12 +39,12 @@ describe('SaveController', function() {
     };
 
     it('should have no products at init', function() {
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         expect($scope.products.length).toEqual(0);
     });
 
     it('should be able to add products', function(){
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         $scope.loginFacebook();
         $scope.item.product = 'Product name';
         $scope.item.startTime = 'Start time';
@@ -67,7 +67,7 @@ describe('SaveController', function() {
 
 
     it('should be able to add many products', function(){
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         $scope.loginFacebook();
 
         $scope.addProduct();
@@ -78,31 +78,31 @@ describe('SaveController', function() {
 
     });
     it('should be able to login via FaceBook', function(){
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         $scope.loginFacebook();
         expect($scope.user.name).toEqual('FaceBook');
     });
 
     it('should be able to login via Twitter', function(){
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         $scope.loginTwitter();
         expect($scope.user.name).toEqual('Twitter');
     });
 
     it('should be able to log out', function(){
-        var controller = createController(psMock,faMock);
+        var controller = createController(fsMock,faMock);
         $scope.logout();
         expect($scope.user.name).toEqual(null);
     });
 
     it('should still be zero elements when no added and we try to delete', function() {
-        var controller = createController(psMock, faMock);
+        var controller = createController(fsMock, faMock);
         $scope.removeProduct();
         expect($scope.products.length).toEqual(0);
     });
 
     it('should be able to delete a product', function() {
-        var controller = createController(psMock, faMock);
+        var controller = createController(fsMock, faMock);
         $scope.loginFacebook();
         $scope.addProduct();
         $scope.removeProduct();
@@ -110,7 +110,7 @@ describe('SaveController', function() {
     });
 
     it('delete one from product', function() {
-        var controller = createController(psMock, faMock);
+        var controller = createController(fsMock, faMock);
         $scope.loginFacebook();
         $scope.addProduct();
         $scope.addProduct();
@@ -119,7 +119,7 @@ describe('SaveController', function() {
     })
 
     it('delete specific product', function() {
-        var controller = createController(psMock, faMock);
+        var controller = createController(fsMock, faMock);
         $scope.loginFacebook();
         $scope.item.desc = 'A';
         $scope.addProduct();

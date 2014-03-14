@@ -3,12 +3,22 @@ var app = angular.module("showMe", ["firebase"]);
 app.FIREBASE = 'https://eysteinbye.firebaseio.com/showme';
 
 app.factory('firebaseAuth', function($rootScope) {
-    var _ref = new Firebase(app.FIREBASE);
-
-    var auth = {};
-    auth.broadcastAuthEvent = function() {
-        $rootScope.$broadcast('authEvent');
+    var auth = {
+        broadcastAuthEvent : function() {
+            $rootScope.$broadcast('authEvent');
+        },
+        loginTw : function() {
+            this.client.login('twitter');
+        },
+        loginFb : function() {
+            this.client.login('facebook');
+        },
+        logout : function() {
+            this.client.logout();
+        }
     };
+
+    var _ref = new Firebase(app.FIREBASE);
     auth.client = new FirebaseAuthClient(_ref, function(error, user) {
         if (error) {
             // todo: add login page
@@ -20,20 +30,11 @@ app.factory('firebaseAuth', function($rootScope) {
             auth.broadcastAuthEvent();
         }
     });
-    auth.loginTw = function() {
-        this.client.login('twitter');
-    };
-    auth.loginFb = function() {
-        this.client.login('facebook');
-    };
-    auth.logout = function() {
-        this.client.logout();
-    };
 
     return auth;
 });
 
-app.factory('productsService', function myService(angularFire,firebaseAuth) {
+app.factory('firebaseService', function myService(angularFire, firebaseAuth) {
     return {
         init: function(scope, arrName) {
 
@@ -61,12 +62,12 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
 });
 
 //app.controller('SaveController', function($scope, productsService, firebaseAuth) {
-var SaveController = function($scope, productsService, firebaseAuth) {
+var SaveController = function($scope, firebaseService, firebaseAuth) {
 //app.controller('SaveController', ['$scope','productsService','firebaseAuth', function($scope, productsService, firebaseAuth) {
     $scope.products = [];
     $scope.item = {};
 
-    productsService.init($scope, 'products');
+    firebaseService.init($scope, 'products');
 
     $scope.addProduct = function() {
         $scope.products.push({
