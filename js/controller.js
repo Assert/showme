@@ -37,8 +37,6 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
     return {
         init: function(scope, arrName) {
 
-            scope.products = [];
-
             scope.safeApply = function(fn) {
                 var phase = this.$root.$$phase;
                 if (phase == '$apply' || phase == '$digest') {
@@ -58,9 +56,6 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
 
             var _ref = new Firebase(app.FIREBASE);
             angularFire(_ref, scope, arrName);
-        },
-        addItem: function(scope,item){
-            scope.products.push(item);
         }
     };
 });
@@ -68,11 +63,13 @@ app.factory('productsService', function myService(angularFire,firebaseAuth) {
 //app.controller('SaveController', function($scope, productsService, firebaseAuth) {
 var SaveController = function($scope, productsService, firebaseAuth) {
 //app.controller('SaveController', ['$scope','productsService','firebaseAuth', function($scope, productsService, firebaseAuth) {
+    $scope.products = [];
+    $scope.item = {};
 
     productsService.init($scope, 'products');
-    $scope.item = {};
+
     $scope.addProduct = function() {
-        productsService.addItem($scope,{
+        $scope.products.push({
             addedBy: $scope.user.name,
             product: $scope.item.product,
             startTime: $scope.item.startTime,
@@ -84,7 +81,9 @@ var SaveController = function($scope, productsService, firebaseAuth) {
         });
     };
 
-    $scope.selectedProduct = {desc:'kl'};
+    $scope.removeProduct = function (index) {
+        $scope.products.splice(index, 1);
+    };
     $scope.loginFacebook = function () {
         firebaseAuth.loginFb();
     };
