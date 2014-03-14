@@ -35,6 +35,7 @@ app.factory('firebaseAuth', function($rootScope) {
 });
 
 app.factory('firebaseService', function myService(angularFire, firebaseAuth) {
+    var _ref;
     return {
         init: function(scope, arrName) {
 
@@ -55,27 +56,51 @@ app.factory('firebaseService', function myService(angularFire, firebaseAuth) {
                 });
             });
 
-            var _ref = new Firebase(app.FIREBASE);
+            _ref = new Firebase(app.FIREBASE);
             angularFire(_ref, scope, arrName);
+        },
+        newId : function(){
+            return _ref.push().name();
         }
     };
 });
 
-//app.controller('SaveController', function($scope, productsService, firebaseAuth) {
 var SaveController = function($scope, firebaseService, firebaseAuth) {
-//app.controller('SaveController', ['$scope','productsService','firebaseAuth', function($scope, productsService, firebaseAuth) {
     $scope.products = [];
     $scope.item = {};
 
     firebaseService.init($scope, 'products');
 
-    $scope.addProduct = function() {
-        $scope.products.push($scope.getActiveProduct());
-        $scope.clear();
+    $scope.saveProduct = function() {
+        var item = $scope.getActiveProduct();
+        var index = $scope.getIndexOfElementById(item.id);
+        if(item.id===undefined){
+            $scope.addProduct();
+        }else{
+            $scope.editProduct();
+        }
     };
+
+     $scope.addProduct = function() {
+        var item = $scope.getActiveProduct();
+        var id = firebaseService.newId();
+        item.id = id;
+        $scope.item.id = id; // Write it back to hidden
+
+        $scope.products.push(item);
+    };
+
+    $scope.editProduct = function() {
+        var item = $scope.getActiveProduct();
+        var index = $scope.getIndexOfElementById(item.id);
+
+        $scope.products[index] = item;
+    };
+
     // todo: Denne blir "egentlig" private.. skal vi lage test på den... ?
     $scope.getActiveProduct = function() {
         return {
+            id: $scope.item.id,
             addedBy: $scope.user.name,
             product: $scope.item.product,
             startTime: $scope.item.startTime,
@@ -87,22 +112,22 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
         };
     };
 
-    $scope.editProduct = function() {
-      alert('Not ready');
-    };
-
     $scope.clear = function () {
         $scope.item = {};
     };
     // todo: Denne blir "egentlig" private.. skal vi lage test på den... ?
     $scope.removeProduct = function (elem) {
-        var index = $scope.getIndexOfElement(elem);
-        $scope.products.splice(index, 1);
-        $scope.clear();
+        if(elem !== null && elem !== undefined){
+            var index = $scope.getIndexOfElementById(elem.id);
+            $scope.products.splice(index, 1);
+            $scope.clear();
+        }
     };
-    $scope.getIndexOfElement = function (elem) {
-        var index = $scope.products.indexOf(elem);
-        return index;
+    $scope.getIndexOfElementById = function (id) {
+        for(var i=0; i<$scope.products.length; i++){
+            if($scope.products[i].id===id) return i;
+        }
+        return -1;
     };
     $scope.loginFacebook = function () {
         firebaseAuth.loginFb();
@@ -115,5 +140,4 @@ var SaveController = function($scope, firebaseService, firebaseAuth) {
     };
 
 };
-//}]);
 

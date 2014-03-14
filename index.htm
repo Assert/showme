@@ -28,6 +28,8 @@
             Products:
             <select ng-model="item" ng-options="p.product for p in products"></select><br>
 
+            <input type="hidden" ng-model="item.id">
+
             <label>
                 <span class="labelText">Product name</span>
                 <input type="text" ng-model="item.product" placeholder="Product name.....">
@@ -59,9 +61,11 @@
                 <input type="text" ng-model="item.imageUrl" placeholder="Image...">
             </label>
             <br />
-            <button ng-click="addProduct()">Save new</button>
-            <button ng-click="editProduct()">Save</button>
-            <button ng-click="removeProduct(item)">Delete</button>
+            <button ng-hide="item.id" ng-click="saveProduct()">Save</button>
+
+            <button ng-show="item.id" ng-click="saveProduct()">Update</button>
+            <button ng-show="item.id" ng-click="removeProduct(item)">Delete</button>
+            <button ng-show="item.id" ng-click="clear()">Create new</button>
         </div>
 
     </body>

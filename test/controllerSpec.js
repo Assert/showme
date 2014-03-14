@@ -21,8 +21,8 @@ describe('SaveController', function() {
         init: function(scope,name) {
             $scope.products = [];
         },
-        addItem : function(scope,item){
-            $scope.products.push(item);
+        newId : function(){
+            return $scope.products.length;
         }
     };
 
@@ -46,6 +46,7 @@ describe('SaveController', function() {
     it('should be able to add products', function(){
         var controller = createController(fsMock,faMock);
         $scope.loginFacebook();
+        $scope.item.id = $scope.item.id +1;
         $scope.item.product = 'Product name';
         $scope.item.startTime = 'Start time';
         $scope.item.showId = 'Show ID';
@@ -97,7 +98,7 @@ describe('SaveController', function() {
 
     it('should still be zero elements when no added and we try to delete', function() {
         var controller = createController(fsMock, faMock);
-        $scope.removeProduct();
+        $scope.removeProduct(null);
         expect($scope.products.length).toEqual(0);
     });
 
@@ -105,7 +106,8 @@ describe('SaveController', function() {
         var controller = createController(fsMock, faMock);
         $scope.loginFacebook();
         $scope.addProduct();
-        $scope.removeProduct();
+        var firstProduct = $scope.products[0];
+        $scope.removeProduct(firstProduct);
         expect($scope.products.length).toEqual(0);
     });
 
@@ -114,7 +116,8 @@ describe('SaveController', function() {
         $scope.loginFacebook();
         $scope.addProduct();
         $scope.addProduct();
-        $scope.removeProduct();
+        var firstProduct = $scope.products[0];
+        $scope.removeProduct(firstProduct);
         expect($scope.products.length).toEqual(1);
     })
 
@@ -137,6 +140,34 @@ describe('SaveController', function() {
         expect($scope.products[1].desc).toEqual(itemC.desc);
         $scope.removeProduct(itemC);
         expect($scope.products[1]).toEqual(undefined);
+    })
+
+    it('Edit a product', function() {
+        var controller = createController(fsMock, faMock);
+        $scope.loginFacebook();
+
+        $scope.item.desc = 'A';
+        $scope.addProduct();
+        var readItemback = $scope.products[0];
+        expect(readItemback.desc).toEqual('A');
+
+        $scope.item.desc = 'B';
+        $scope.editProduct();
+        expect($scope.products[0].desc).toEqual('B');
+    });
+
+    it('Save or update product', function(){
+        var controller = createController(fsMock, faMock);
+        $scope.loginFacebook();
+
+        $scope.item.desc = 'A';
+        $scope.saveProduct();
+        var readItemback = $scope.products[0];
+        expect(readItemback.desc).toEqual('A');
+
+        $scope.item.desc = 'B';
+        $scope.saveProduct();
+        expect($scope.products.length).toEqual(1);
     })
 
 });
