@@ -11,19 +11,29 @@
       <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
     <body ng-controller="SaveController">
-        <h1>ShowMe!</h1>
+        <header>
 
-        <span ng-hide="user">
+            <h1>ShowMe!</h1>
+            <div ng-show="user">
+                Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
+            </div>
+
+
+
+             <div ng-hide="user">
             Login with
             <a ng-click="loginFacebook()">Facebook</a>
             or
             <a ng-click="loginTwitter()">Twitter</a>
-        </span>
+        </div>
+        </header>
+
+        <article>
+
+
 
         <div ng-show="user">
-            <header>
-                Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
-            </header>
+
 
             Products:
             <select ng-model="item" ng-options="p.product for p in products"></select><br>
@@ -61,12 +71,16 @@
                 <input type="text" ng-model="item.imageUrl" placeholder="Image...">
             </label>
             <br />
+            <p>
             <button ng-hide="item.id" ng-click="saveProduct()">Save</button>
 
             <button ng-show="item.id" ng-click="saveProduct()">Update</button>
             <button ng-show="item.id" ng-click="removeProduct(item)">Delete</button>
             <button ng-show="item.id" ng-click="clear()">Create new</button>
+            </p>
         </div>
+        </article>
 
+    <footer>ShowMe!</footer>
     </body>
 </html>
