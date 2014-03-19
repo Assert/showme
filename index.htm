@@ -18,8 +18,6 @@
                 Welcome {{user.name}} | <a ng-click="logout()">Logout</a>
             </div>
 
-
-
              <div ng-hide="user">
             Login with
             <a ng-click="loginFacebook()">Facebook</a>
@@ -30,10 +28,7 @@
 
         <article>
 
-
-
         <div ng-show="user">
-
 
             Products:
             <select ng-model="item" ng-options="p.product for p in products"></select><br>
