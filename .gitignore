@@ -1,3 +1,5 @@
 .idea/
 npm-debug.log
 ShowMe.iml
+node_modules
+js/script.js
