@@ -42,7 +42,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
+   //  port: 9876,
 
 
     // enable / disable colors in the output (reporters and logs)
@@ -55,13 +55,26 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-//    browsers: ['Chrome'],
-      browsers: ['PhantomJS','Chrome'],
+  //  browsers: ['Chrome'],
+//      browsers: ['PhantomJS','Chrome'],
+   //  browsers: ['PhantomJS'],
+     browsers: ['Firefox'],
+
+    plugins : [
+        'karma-junit-reporter',
+        'karma-firefox-launcher',
+        'karma-jasmine'
+    ],
+
+      junitReporter: {
+        outputFile: 'unit.xml',
+          suite: 'unit'
+      },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
