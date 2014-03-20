@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/jthagesk/ShowMe.png?branch=master)](https://travis-ci.org/jthagesk/ShowMe)
+
 ShowMe
 ======
 
