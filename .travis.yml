@@ -9,4 +9,4 @@ before_script:
 deploy:
   provider: heroku
   api_key: "0f9dca13-b963-4915-be2e-7b0e65c03722"
-  app: showmethat
+  app: showmeprod
