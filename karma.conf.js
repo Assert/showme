@@ -1,7 +1,23 @@
 // Karma configuration
 // Generated on Tue Mar 11 2014 15:30:22 GMT+0100 (CET)
 
+
+
+/*
+    if (require('os').platform() === 'darwin') {
+        browsers.push('Safari')
+    }
+*/
+
+
 module.exports = function(config) {
+
+    browserToTestIn = ['PhantomJS'];
+    if (process.env.TRAVISCI) {
+        browserToTestIn = ['Firefox'];
+    }
+
+
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -63,9 +79,10 @@ module.exports = function(config) {
   //  browsers: ['Chrome'],
 //      browsers: ['PhantomJS','Chrome'],
    //  browsers: ['PhantomJS'],
-     browsers: ['Firefox'],
+     browsers: browserToTestIn,
 
     plugins : [
+        'karma-phantomjs-launcher',
         'karma-junit-reporter',
         'karma-firefox-launcher',
         'karma-jasmine'
