@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url('http://fonts.googleapis.com/css?family=Nunito');
 
 html, body, head, header, h1 {
@@ -9,7 +10,7 @@ body {
     width: 100%;
     background-color: #F2F2F2;
     font-size: 24px;
-    font-family: Nunito,"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Nunito, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #3C3C3C;
 }
 
@@ -61,7 +62,7 @@ input {
     text-align: right;
 }
 
-input[type=text] {
+input[type='text'] {
     color: #3C3C3C;
     border: 1px solid #3C3C3C;
     background-color: white;

@@ -1,6 +1,6 @@
 
-module.exports = function(grunt) {
-
+module.exports = function (grunt) {
+    'use strict';
     grunt.initConfig({
         karma: {
             unit: {
