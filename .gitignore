@@ -1,4 +1,5 @@
 .idea/
+bin/
 npm-debug.log
 ShowMe.iml
 node_modules
