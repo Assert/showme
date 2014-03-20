@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/jthagesk/ShowMe.png?branch=master)](https://travis-ci.org/jthagesk/ShowMe)
+[![Build Status](https://secure.travis-ci.org/werwer/showme.png?branch=master)](https://travis-ci.org/werwer/showme)
 
 ShowMe
 ======
