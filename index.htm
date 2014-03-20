@@ -2,12 +2,20 @@
 <html ng-app="showMe">
   <head>
       <title>ShowMe!</title>
+
+      <!--start PROD imports
+      <script src="bin/script.js"></script>
+      end PROD imports-->
+
+      <!--start DEV imports-->
       <script src="lib/angular/angular.min.js"></script>
       <script src="lib/angular/angular-mocks.js"></script>
-      <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-      <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
-      <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+      <script src="lib/firebase/firebase.js"></script>
+      <script src="lib/firebase/firebase-simple-login.js"></script>
+      <script src="lib/firebase/angularfire.min.js"></script>
       <script src="js/controller.js"></script>
+      <!--end DEV imports-->
+
       <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
     <body ng-controller="SaveController">

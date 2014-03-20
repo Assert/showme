@@ -24,8 +24,8 @@ module.exports = function (grunt) {
                 separator: ';' //separates scripts
             },
             dist: {
-                src: ['js/*.js'], //Using mini match for your scripts to concatenate
-                dest: 'bin/script.js' //where to output the script
+                src: ['js/*.js', 'lib/**/*.js'],
+                dest: 'bin/script.js'
             }
         },
 
@@ -33,6 +33,34 @@ module.exports = function (grunt) {
             js: {
                 files: {
                     'bin/script.js': ['bin/script.js'] //save over the newly created script
+                }
+            }
+        },
+
+        'string-replace': {
+            inline: {
+                files: {
+                    'index.htm': 'index.htm'
+                },
+                options: {
+                    replacements: [
+                        {
+                            pattern: '<!--start PROD imports',
+                            replacement: '<!--start PROD imports-->'
+                        },
+                        {
+                            pattern: 'end PROD imports-->',
+                            replacement: '<!--end PROD imports-->'
+                        },
+                        {
+                            pattern: '<!--start DEV imports-->',
+                            replacement: '<!--start DEV imports'
+                        },
+                        {
+                            pattern: '<!--end DEV imports-->',
+                            replacement: 'end DEV imports-->'
+                        }
+                    ]
                 }
             }
         },
@@ -47,6 +75,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
@@ -56,6 +85,6 @@ module.exports = function (grunt) {
     // Tasks Travis will run
     grunt.registerTask('test', ['karma:travis']);
     grunt.registerTask('development', ['jshint']);
-    grunt.registerTask('production', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('production', ['jshint', 'concat', 'uglify', 'string-replace']);
 
 };
