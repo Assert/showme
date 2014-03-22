@@ -22,10 +22,11 @@ header{
     width:100%;
     text-align: center;
 }
+
 h1{
     display: block;
-
 }
+
 article{
     padding-top: 20px;
     width: 500px;
@@ -40,11 +41,9 @@ footer{
     height:30px;
     background-color: #3C3C3C;
     color: #F2F2F2;
-    padding-left: 10px;
     padding-top: 5px;
     font-size: 14px;
 }
-
 
 a{
     color:#4096F1;
@@ -55,19 +54,19 @@ a:hover{
 }
 select, button{
     font-size: 24px;
-
 }
 input {
     font-size: 24px;
-    text-align: right;
 }
 
 input[type='text'] {
     color: #3C3C3C;
     border: 1px solid #3C3C3C;
     background-color: white;
+    width: 310px;
 }
 
 span.labelText{
-    width:200px;
+    width: 170px;
+    display: inline-block;
 }
