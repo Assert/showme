@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "test": "grunt test",
-    "pretest" : "grunt production"
+    "prepublish": "node bootstrap.js"
   },
-  "devDependencies": {
+    "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-jshint": "^0.9.2",
     "grunt-contrib-nodeunit": "~0.2.0",
