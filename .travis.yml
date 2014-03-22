@@ -1,14 +1,13 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_script:
-  - 'npm install -g grunt-cli'
-  - 'export DISPLAY=:99.0'
-  - 'sh -e /etc/init.d/xvfb start'
-  - 'sleep 3'
+- npm install -g grunt-cli
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
 deploy:
-  provider: openshift
-  user: "eysteinbye@gmail.com"
-  password: "werwer" # can be encrypted
-  domain: "showmeapp"
-  app: prod
+  provider: heroku
+  api_key:
+    secure: B5h1rGeumQzM9TpSlKWVvsnZxKm2vRu+6lO6eAptI8Q4M2djOVeDPBH84FgaRqR9svmSXeKk9MOVBPyQQFRoTaaHM1Lz4pzt+sXJx6QEDuyMDzKhsbiVDOJpKfQdU5LPNwj3jjbAqITmSxHXjnLKjfWh5VunWMRqmUszJ4LTKhA=
+
