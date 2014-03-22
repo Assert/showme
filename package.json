@@ -2,8 +2,8 @@
   "name": "ShowMe",
   "private": true,
   "scripts": {
-    "pretest": "grunt production",
-    "test": "grunt test"
+    "test": "grunt test",
+    "preinstall" : "grunt production"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
