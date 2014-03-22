@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "grunt test",
-    "preinstall" : "grunt production"
+    "pretest" : "grunt production"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
