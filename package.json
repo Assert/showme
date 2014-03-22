@@ -2,10 +2,10 @@
   "name": "ShowMe",
   "private": true,
   "scripts": {
-    "test": "grunt test",
-    "pretest" : "grunt production"
+    "prepublish": "node -e \"require('grunt').tasks(['production']);\"",
+    "test": "node -e \"require('grunt').tasks(['test']);\""
   },
-  "devDependencies": {
+    "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-jshint": "^0.9.2",
     "grunt-contrib-nodeunit": "~0.2.0",
