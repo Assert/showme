@@ -1,8 +1,9 @@
 **Give a description of:**
 
  * GitHub
- * AppBarbor
+ * Heroku
  * Travic.ci
  * Grunt
+ * npm
  * Karma, jasmine
  * Firebase
